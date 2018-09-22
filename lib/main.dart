@@ -8,6 +8,9 @@ class MinaOTP extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'MinaOTP',
+      theme: new ThemeData(
+        primaryColor: Colors.black,
+      ),
       home: new RandomWords(),
     );
   }

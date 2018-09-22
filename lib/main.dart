@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:dotp/dotp.dart';
 
 void main() => runApp(new MinaOTP());
 
@@ -24,7 +25,8 @@ class RandomWords extends StatefulWidget {
 class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _saved = new Set<WordPair>();
-  final _biggerFont = const TextStyle(fontSize: 18.0);
+  final _titleFont = const TextStyle(fontSize: 18.0);
+  final _codeFont = const TextStyle(fontSize: 24.0);
 
   Widget _buildSuggestions() {
     return new ListView.builder(
@@ -47,21 +49,16 @@ class RandomWordsState extends State<RandomWords> {
     return new ListTile(
       title: new Text(
         pair.asPascalCase,
-        style: _biggerFont,
+        style: _titleFont,
       ),
-      trailing: new Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
+      subtitle: new Text(
+        pair.asLowerCase,
       ),
-      onTap: () {
-        setState(() {
-          if (alreadySaved) {
-            _saved.remove(pair);
-          } else {
-            _saved.add(pair);
-          }
-        });
-      },
+      trailing: new Text(
+        '201826',
+        style: _codeFont,
+      ),
+      onTap: _pushSaved,
     );
   }
 
@@ -70,9 +67,6 @@ class RandomWordsState extends State<RandomWords> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('MinaOTP'),
-        actions: <Widget>[
-          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
-        ],
       ),
       body: _buildSuggestions(),
     );
@@ -87,7 +81,7 @@ class RandomWordsState extends State<RandomWords> {
               return new ListTile(
                 title: new Text(
                   pair.asPascalCase,
-                  style: _biggerFont,
+                  style: _titleFont,
                 ),
               );
             },

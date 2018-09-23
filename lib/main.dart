@@ -73,7 +73,18 @@ class RandomWordsState extends State<RandomWords> {
           )
         ],
       ),
-      body: _buildSuggestions(),
+      body: new Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          new LinearProgressIndicator(
+            value: 0.5,
+            backgroundColor: Colors.orange,
+          ),
+          new Expanded(
+            child: _buildSuggestions(),
+          ),
+        ],
+      ),
     );
   }
 
@@ -104,23 +115,6 @@ class RandomWordsState extends State<RandomWords> {
     Navigator.of(context).push(
       new MaterialPageRoute(
         builder: (context) {
-          final tiles = _saved.map(
-            (pair) {
-              return new ListTile(
-                title: new Text(
-                  pair.asPascalCase,
-                  style: _titleFont,
-                ),
-              );
-            },
-          );
-          final divided = ListTile
-            .divideTiles(
-              context: context,
-              tiles: tiles,
-            )
-            .toList();
-          
           return new Scaffold(
             appBar: new AppBar(
               title: new Text('Edit'),

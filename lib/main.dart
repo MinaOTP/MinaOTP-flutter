@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:dotp/dotp.dart';
@@ -27,6 +28,8 @@ class RandomWordsState extends State<RandomWords> {
   final _saved = new Set<WordPair>();
   final _titleFont = const TextStyle(fontSize: 18.0);
   final _codeFont = const TextStyle(fontSize: 24.0);
+  double _currentProgress = 1.0 / 30;
+  double _step = 1.0 / 30;
 
   Widget _buildSuggestions() {
     return new ListView.builder(
@@ -63,6 +66,18 @@ class RandomWordsState extends State<RandomWords> {
 
   @override
   Widget build(BuildContext context) {
+    new Timer(
+      new Duration(
+        seconds: 1,
+      ), () {
+        setState(() {
+          _currentProgress += _step;
+          if (_currentProgress > 1.0) {
+            _currentProgress = _step;
+          }
+        });
+      }
+    );
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('MinaOTP'),
@@ -77,8 +92,7 @@ class RandomWordsState extends State<RandomWords> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           new LinearProgressIndicator(
-            value: 0.5,
-            backgroundColor: Colors.orange,
+            value: _currentProgress,
           ),
           new Expanded(
             child: _buildSuggestions(),

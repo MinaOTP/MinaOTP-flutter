@@ -66,8 +66,37 @@ class RandomWordsState extends State<RandomWords> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('MinaOTP'),
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.add),
+            onPressed: _showModal,
+          )
+        ],
       ),
       body: _buildSuggestions(),
+    );
+  }
+
+  void _showModal() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return new Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            new ListTile(
+              leading: new Icon(Icons.camera_alt),
+              title: new Text('Scan'),
+              onTap: () => {},
+            ),
+            new ListTile(
+              leading: new Icon(Icons.create),
+              title: new Text('Mannual'),
+              onTap: _pushSaved,
+            ),
+          ]
+        );
+      }
     );
   }
 
@@ -148,6 +177,6 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   void _updateToken() {
-    
+
   }
 }

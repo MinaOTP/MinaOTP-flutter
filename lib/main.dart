@@ -135,7 +135,11 @@ class RandomWordsState extends State<RandomWords> {
                       const ListTile(
                         title: const Text('Service'),
                       ),
-                      new TextField(),
+                      new TextField(
+                        decoration: InputDecoration(
+                          hintText: 'miaotp',
+                        ),
+                      ),
                     ]
                   )
                 ),
@@ -146,7 +150,11 @@ class RandomWordsState extends State<RandomWords> {
                       const ListTile(
                         title: const Text('Account'),
                       ),
-                      new TextField(),
+                      new TextField(
+                        decoration: InputDecoration(
+                          hintText: 'user@minaotp.com',
+                        ),
+                      ),
                     ]
                   )
                 ),
@@ -157,7 +165,11 @@ class RandomWordsState extends State<RandomWords> {
                       const ListTile(
                         title: const Text('Key'),
                       ),
-                      new TextField(),
+                      new TextField(
+                        decoration: InputDecoration(
+                          hintText: 'abcd efgh ijkl mnop',
+                        ),
+                      ),
                     ]
                   )
                 ),

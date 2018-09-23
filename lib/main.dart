@@ -45,7 +45,6 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildRow(WordPair pair) {
-    final alreadySaved = _saved.contains(pair);
     return new ListTile(
       title: new Text(
         pair.asPascalCase,
@@ -96,11 +95,59 @@ class RandomWordsState extends State<RandomWords> {
           return new Scaffold(
             appBar: new AppBar(
               title: new Text('Edit'),
+              actions: <Widget>[
+                new IconButton(
+                  icon: new Icon(Icons.done),
+                  onPressed: _updateToken,
+                )
+              ],
             ),
-            body: new ListView(children: divided),
+            body: new Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                new Card(
+                  child: new Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        title: const Text('Service'),
+                      ),
+                      new TextField(),
+                    ]
+                  )
+                ),
+                new Card(
+                  child: new Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        title: const Text('Account'),
+                      ),
+                      new TextField(),
+                    ]
+                  )
+                ),
+                new Card(
+                  child: new Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        title: const Text('Key'),
+                      ),
+                      new TextField(),
+                    ]
+                  )
+                ),
+              ]
+            )
+
           );
         },
       ),
     );
+  }
+
+  void _updateToken() {
+    
   }
 }
